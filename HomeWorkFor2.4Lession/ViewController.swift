@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    //MARK: - IBOutlets
     
     @IBOutlet var colorView: UIView!
     
@@ -21,25 +20,30 @@ class ViewController: UIViewController {
     @IBOutlet var blueValue: UILabel!
     @IBOutlet var greenValue: UILabel!
     
-    //MARK: - Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        slidersChanged()
     }
-
-    //MARK: - IBActions
-    @IBAction func sligersChanged() {
+    
+    
+    @IBAction func slidersChanged() {
+        
+        let redComponent = redSlider.value
+        let greenComponent = greenSlider.value
+        let blueComponent = blueSlider.value
         
         let color = UIColor(
-            red: CGFloat(redSlider.value),
-            green: CGFloat(greenSlider.value),
-            blue: CGFloat(blueSlider.value),
+            red: CGFloat(redComponent),
+            green: CGFloat(greenComponent),
+            blue: CGFloat(blueComponent),
             alpha: 1)
         colorView.backgroundColor = color
         
-        let roundedRedValue = (redSlider.value * 100).rounded() / 100
-        let roundedGreenValue = (greenSlider.value * 100).rounded() / 100
-        let roundedBlueValue = (blueSlider.value * 100).rounded() / 100
+        let roundedRedValue = (redComponent * 100).rounded() / 100
+        let roundedGreenValue = (greenComponent * 100).rounded() / 100
+        let roundedBlueValue = (blueComponent * 100).rounded() / 100
+        
         redValue.text = String(roundedRedValue)
         greenValue.text = String(roundedGreenValue)
         blueValue.text = String(roundedBlueValue)
