@@ -47,7 +47,6 @@ class ViewController: UIViewController {
         redValue.text = String(roundedRedValue)
         greenValue.text = String(roundedGreenValue)
         blueValue.text = String(roundedBlueValue)
-        
     }
 }
 
