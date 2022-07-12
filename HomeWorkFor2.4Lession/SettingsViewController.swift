@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SettingsViewController.swift
 //  HomeWorkFor2.4Lession
 //
 //  Created by Федор Еронин on 24.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SettingsViewController: UIViewController {
     
     
     @IBOutlet var colorView: UIView!
