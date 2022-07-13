@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rMd-3K-lhw">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -18,10 +18,13 @@
                         <viewLayoutGuide key="safeArea" id="Vrj-fX-EVE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="tWm-uk-mkr"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="9uG-kw-goU"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="tWm-uk-mkr">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.pencil" catalog="system" id="Mr1-pu-Mbq">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="0gg-51-jKT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mQ-c0-X3m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -100,20 +103,20 @@
                                         <rect key="frame" x="-2" y="0.0" width="232" height="31"/>
                                         <color key="minimumTrackTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <action selector="slidersChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="1AT-sB-MtE"/>
+                                            <action selector="sliderChandes:" destination="BYZ-38-t0r" eventType="valueChanged" id="5G0-nR-zD6"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2Ah-U8-eAZ" userLabel="Green Slider">
                                         <rect key="frame" x="-2" y="38" width="232" height="31"/>
                                         <color key="minimumTrackTintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <action selector="slidersChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="AM7-4f-bgh"/>
+                                            <action selector="sliderChandes:" destination="BYZ-38-t0r" eventType="valueChanged" id="MRt-BC-Rmz"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="0Q6-8c-Bk6" userLabel="Blue Slider">
                                         <rect key="frame" x="-2" y="76" width="232" height="31"/>
                                         <connections>
-                                            <action selector="slidersChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="Yl0-JD-Wee"/>
+                                            <action selector="sliderChandes:" destination="BYZ-38-t0r" eventType="valueChanged" id="Dlw-c2-wLG"/>
                                         </connections>
                                     </slider>
                                 </subviews>
@@ -141,6 +144,16 @@
                                     <constraint firstAttribute="width" constant="60" id="uYE-Nh-ddn"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DT7-Jj-uYW">
+                                <rect key="frame" x="186" y="732" width="42" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="ibB-Xo-AZV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.1535936594" green="0.33194643260000001" blue="0.60410684349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -152,23 +165,25 @@
                             <constraint firstItem="ocX-gJ-oaP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="EZu-bR-s4z"/>
                             <constraint firstItem="mWj-Xf-LsM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="Gv8-3j-mI4"/>
                             <constraint firstItem="Vs9-vq-49Q" firstAttribute="top" secondItem="mWj-Xf-LsM" secondAttribute="bottom" constant="40" id="IbV-ZF-b66"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DT7-Jj-uYW" secondAttribute="bottom" constant="100" id="K6C-gX-x16"/>
                             <constraint firstItem="GNJ-8n-rtZ" firstAttribute="leading" secondItem="Vs9-vq-49Q" secondAttribute="trailing" constant="8" id="PeG-5u-zXr"/>
                             <constraint firstItem="hFz-HC-xih" firstAttribute="centerY" secondItem="Vs9-vq-49Q" secondAttribute="centerY" id="QxM-2a-3Hc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mWj-Xf-LsM" secondAttribute="trailing" constant="16" id="Scg-Rj-5Fa"/>
                             <constraint firstItem="GNJ-8n-rtZ" firstAttribute="centerY" secondItem="Vs9-vq-49Q" secondAttribute="centerY" id="b7o-9O-hwX"/>
                             <constraint firstItem="mWj-Xf-LsM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="hNO-5s-lcl"/>
                             <constraint firstItem="Vs9-vq-49Q" firstAttribute="leading" secondItem="ocX-gJ-oaP" secondAttribute="trailing" constant="40" id="vhb-fp-lJd"/>
+                            <constraint firstItem="DT7-Jj-uYW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zNE-ch-SmE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="APU-OR-mgw"/>
                     <connections>
+                        <outlet property="blueLabel" destination="Aqc-CP-cX3" id="Spk-yn-TP1"/>
                         <outlet property="blueSlider" destination="0Q6-8c-Bk6" id="3dZ-u3-MyC"/>
-                        <outlet property="blueValue" destination="Aqc-CP-cX3" id="Spk-yn-TP1"/>
                         <outlet property="colorView" destination="mWj-Xf-LsM" id="lSs-ec-oGJ"/>
+                        <outlet property="greenLabel" destination="cub-U1-1aw" id="6YO-90-ymp"/>
                         <outlet property="greenSlider" destination="2Ah-U8-eAZ" id="388-8L-E88"/>
-                        <outlet property="greenValue" destination="cub-U1-1aw" id="6YO-90-ymp"/>
+                        <outlet property="redLabel" destination="U9w-aG-mad" id="pcH-K6-zus"/>
                         <outlet property="redSlider" destination="saU-MJ-yPi" id="uTv-ph-EVo"/>
-                        <outlet property="redValue" destination="U9w-aG-mad" id="pcH-K6-zus"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -195,6 +210,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

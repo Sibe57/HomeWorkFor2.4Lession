@@ -16,37 +16,69 @@ class SettingsViewController: UIViewController {
     @IBOutlet var blueSlider: UISlider!
     @IBOutlet var greenSlider: UISlider!
     
-    @IBOutlet var redValue: UILabel!
-    @IBOutlet var blueValue: UILabel!
-    @IBOutlet var greenValue: UILabel!
+    @IBOutlet var redLabel: UILabel!
+    @IBOutlet var blueLabel: UILabel!
+    @IBOutlet var greenLabel: UILabel!
     
-
+    var delegate: SettingsViewControllerDelegate!
+    var colorOfMainScreen: UIColor!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        slidersChanged()
+        colorView.backgroundColor = colorOfMainScreen
+        setSliders()
+        
+        setValue(for: redLabel, blueLabel, greenLabel)
     }
     
+    @IBAction func sliderChandes(_ sender: UISlider) {
+        setColor()
+        switch sender {
+        case redSlider:
+            setValue(for: redLabel)
+        case greenSlider:
+            setValue(for: greenLabel)
+        default:
+            setValue(for: blueLabel)
+        }
+    }
     
-    @IBAction func slidersChanged() {
-        
-        let redComponent = redSlider.value
-        let greenComponent = greenSlider.value
-        let blueComponent = blueSlider.value
-        
-        let color = UIColor(
-            red: CGFloat(redComponent),
-            green: CGFloat(greenComponent),
-            blue: CGFloat(blueComponent),
-            alpha: 1)
-        colorView.backgroundColor = color
-        
-        let roundedRedValue = (redComponent * 100).rounded() / 100
-        let roundedGreenValue = (greenComponent * 100).rounded() / 100
-        let roundedBlueValue = (blueComponent * 100).rounded() / 100
-        
-        redValue.text = String(roundedRedValue)
-        greenValue.text = String(roundedGreenValue)
-        blueValue.text = String(roundedBlueValue)
+    @IBAction func doneButtonPressed() {
+        delegate.setNewColor(colorView.backgroundColor ?? .white)
+        dismiss(animated: true)
+    }
+    
+    private func setColor() {
+        colorView.backgroundColor = UIColor(
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
+            alpha: 1
+        )
+    }
+    
+    private func setValue(for labels: UILabel...) {
+        labels.forEach {
+            switch $0 {
+            case redLabel:
+                redLabel.text = string(from: redSlider)
+            case greenLabel:
+                greenLabel.text = string(from: greenSlider)
+            default:
+                blueLabel.text = string(from: blueSlider)
+            }
+        }
+    }
+    
+    private func string(from slider: UISlider) -> String {
+        String(format: "%.2f", slider.value)
+    }
+    
+    private func setSliders() {
+        let color = CIColor(color: colorOfMainScreen)
+        redSlider.value = Float(color.red)
+        greenSlider.value = Float(color.green)
+        blueSlider.value = Float(color.blue)
     }
 }
 
