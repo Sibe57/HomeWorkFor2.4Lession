@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed() {
-        view.endEditing(true)
+        
         delegate.setNewColor(colorView.backgroundColor ?? .white)
         dismiss(animated: true)
     }
@@ -108,10 +108,12 @@ class SettingsViewController: UIViewController {
     }
     
     private func string(from slider: UISlider) -> String {
+        
         String(format: "%.2f", slider.value)
     }
     
     private func setSliders() {
+        
         let color = CIColor(color: colorOfMainScreen)
         redSlider.value = Float(color.red)
         greenSlider.value = Float(color.green)
@@ -119,6 +121,7 @@ class SettingsViewController: UIViewController {
     }
     
     private func createToolBar() {
+        
         let bar = UIToolbar()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                             target: self,
@@ -137,6 +140,7 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func keyboardDoneButtonPressed() {
+        
         view.endEditing(true)
     }
 }
@@ -178,4 +182,3 @@ extension SettingsViewController: UITextFieldDelegate {
         textField.textColor = .black
     }
 }
-
