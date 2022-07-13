@@ -12,12 +12,10 @@ protocol SettingsViewControllerDelegate {
 }
 
 class MainViewController: UIViewController {
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let settingsViewController = segue.destination as? SettingsViewController
-        else {
-            return
-        }
+        else { return }
         settingsViewController.colorOfMainScreen = view.backgroundColor
         settingsViewController.delegate = self
     }
