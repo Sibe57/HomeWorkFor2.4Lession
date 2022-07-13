@@ -39,10 +39,17 @@ class SettingsViewController: UIViewController {
         
         setValue(for: redLabel, blueLabel, greenLabel)
         setValue(for: redTextField, blueTextField, greenTextField)
+        createToolBar()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @IBAction func sliderChandes(_ sender: UISlider) {
+        
         setColor()
+        
         switch sender {
         case redSlider:
             setValue(for: redLabel)
@@ -57,12 +64,13 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed() {
-        
+        view.endEditing(true)
         delegate.setNewColor(colorView.backgroundColor ?? .white)
         dismiss(animated: true)
     }
     
     private func setColor() {
+        
         colorView.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
             green: CGFloat(greenSlider.value),
@@ -72,6 +80,7 @@ class SettingsViewController: UIViewController {
     }
     
     private func setValue(for labels: UILabel...) {
+        
         labels.forEach {
             switch $0 {
             case redLabel:
@@ -85,6 +94,7 @@ class SettingsViewController: UIViewController {
     }
     
     private func setValue(for textFields: UITextField...) {
+        
         textFields.forEach {
             switch $0 {
             case redTextField:
@@ -107,6 +117,28 @@ class SettingsViewController: UIViewController {
         greenSlider.value = Float(color.green)
         blueSlider.value = Float(color.blue)
     }
+    
+    private func createToolBar() {
+        let bar = UIToolbar()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                            target: self,
+                                            action: nil)
+        
+        let done = UIBarButtonItem(title: "Done",
+                                   style: .done,
+                                   target: self,
+                                   action: #selector(keyboardDoneButtonPressed))
+        
+        bar.items = [flexibleSpace, done]
+        bar.sizeToFit()
+        redTextField.inputAccessoryView = bar
+        greenTextField.inputAccessoryView = bar
+        blueTextField.inputAccessoryView = bar
+    }
+    
+    @objc func keyboardDoneButtonPressed() {
+        view.endEditing(true)
+    }
 }
 
 // MARK: - UITextFieldDelegate Methods
@@ -123,7 +155,6 @@ extension SettingsViewController: UITextFieldDelegate {
             textField.textColor = .red
             return
         }
-        textField.textColor = .black
         
         switch textField {
         case redTextField:
@@ -141,6 +172,10 @@ extension SettingsViewController: UITextFieldDelegate {
         }
         
         setColor()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.textColor = .black
     }
 }
 
