@@ -125,7 +125,7 @@ class SettingsViewController: UIViewController {
         
         let bar = UIToolbar()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                            target: self,
+                                            target: nil,
                                             action: nil)
         
         let done = UIBarButtonItem(title: "Done",
